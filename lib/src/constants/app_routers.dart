@@ -6,4 +6,6 @@ class AppRouters {
   static const String homePage = '/home';
   static const String pendingPage = '/pending';
   static const String acceptedPage = '/home/accepted';
+  static const String operationPage = '/operation';
+  static const String dateOperationPage = '/dateOperation';
 }

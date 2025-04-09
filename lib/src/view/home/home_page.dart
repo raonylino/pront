@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late PageController _pageController;
-  int selectedIndex = 1;
+  int selectedIndex = 0;
 
   @override
   void initState() {
@@ -59,11 +59,7 @@ class _HomePageState extends State<HomePage> {
       body: PageView(
         controller: _pageController,
         physics: const NeverScrollableScrollPhysics(),
-        children: const [
-          PendingPage(),
-          AcceptedPage(),
-          CompletedPage(),
-        ],
+        children: const [PendingPage(), AcceptedPage(), CompletedPage()],
       ),
       bottomNavigationBar: SlidingClippedNavBar(
         backgroundColor: AppColors.primaryColor,
