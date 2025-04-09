@@ -233,10 +233,61 @@ class OperationPage extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              Navigator.pushNamed(context, AppRouters.dateOperationPage);
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    backgroundColor: AppColors.lightColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    title: const Text('Confirmação'),
+                    content: const Text(
+                      'Você realmente deseja iniciar a ocorrência?',
+                    ),
+                    actions: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.lightColor,
+                          side: const BorderSide(color: AppColors.primaryColor),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: const Text(
+                          'Cancelar',
+                          style: TextStyle(color: AppColors.primaryColor),
+                        ),
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.primaryColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          Navigator.pushNamed(
+                            context,
+                            AppRouters.dateOperationPage,
+                          );
+                        },
+                        child: const Text(
+                          'Confirmar',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
             },
             child: Text(
-              'iniciar ocorrencia',
+              'iniciar ocorrência',
               style: TextStyle(
                 fontFamily: TextStyles.instance.secondary,
                 fontSize: 16,
