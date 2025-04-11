@@ -7,5 +7,7 @@ class AppRouters {
   static const String pendingPage = '/pending';
   static const String acceptedPage = '/home/accepted';
   static const String operationPage = '/operation';
-  static const String dateOperationPage = '/dateOperation';
+  static const String dateOperationPage = '/operation/dateOperation';
+  static const String galleryPhotoPage =
+      '/operation/dateOperation/galleryPhoto';
 }
