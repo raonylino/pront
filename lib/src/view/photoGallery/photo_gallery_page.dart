@@ -7,6 +7,7 @@ import 'package:path/path.dart' as path;
 import 'package:prime_pronta_resposta/src/constants/app_colors.dart';
 import 'package:prime_pronta_resposta/src/constants/app_routers.dart';
 import 'package:prime_pronta_resposta/src/constants/app_text_styles.dart';
+import 'package:prime_pronta_resposta/src/view/imagePreview/image_preview_page.dart';
 
 class PhotoGalleryPage extends StatefulWidget {
   const PhotoGalleryPage({super.key});
@@ -16,7 +17,7 @@ class PhotoGalleryPage extends StatefulWidget {
 }
 
 class _PhotoGalleryPageState extends State<PhotoGalleryPage> {
-  File? _imageFile;
+  List<File> _imageFiles = [];
 
   Future<void> _pickAndSaveImage() async {
     final ImagePicker picker = ImagePicker();
@@ -29,7 +30,7 @@ class _PhotoGalleryPageState extends State<PhotoGalleryPage> {
       final File newImage = await File(image.path).copy(newPath);
 
       setState(() {
-        _imageFile = newImage;
+        _imageFiles.add(newImage);
       });
 
       print('Imagem salva em: $newPath');
@@ -53,7 +54,6 @@ class _PhotoGalleryPageState extends State<PhotoGalleryPage> {
         ),
         centerTitle: true,
         backgroundColor: AppColors.primaryColor,
-        actionsIconTheme: const IconThemeData(color: Colors.white),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
@@ -65,7 +65,48 @@ class _PhotoGalleryPageState extends State<PhotoGalleryPage> {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Column(
           children: [
-            const Spacer(),
+            Expanded(
+              child: GridView.builder(
+                itemCount: _imageFiles.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                  childAspectRatio: 1,
+                ),
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        AppRouters.imagePreviewPage,
+                        arguments: _imageFiles[index],
+                      );
+                    },
+
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey.shade400,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.file(
+                          _imageFiles[index],
+                          width: 200,
+                          height: 200,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+
             ElevatedButton.icon(
               onPressed: _pickAndSaveImage,
               icon: const Icon(Icons.camera_alt_outlined),
@@ -80,7 +121,6 @@ class _PhotoGalleryPageState extends State<PhotoGalleryPage> {
               label: const Text('Tirar foto'),
             ),
             const SizedBox(height: 20),
-            if (_imageFile != null) Image.file(_imageFile!, height: 200),
           ],
         ),
       ),

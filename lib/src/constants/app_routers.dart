@@ -10,4 +10,6 @@ class AppRouters {
   static const String dateOperationPage = '/operation/dateOperation';
   static const String galleryPhotoPage =
       '/operation/dateOperation/galleryPhoto';
+  static const String imagePreviewPage =
+      '/operation/dateOperation/galleryPhoto/imagePreview';
 }
