@@ -1,6 +1,7 @@
 class AppRouters {
   static const String splashPage = '/';
   static const String loginPage = '/login';
+  static const String recoverPage = '/login/recover';
   static const String registerPage = '/register';
   static const String profilePage = '/profile';
   static const String homePage = '/home';

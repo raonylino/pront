@@ -7,7 +7,6 @@ import 'package:path/path.dart' as path;
 import 'package:prime_pronta_resposta/src/constants/app_colors.dart';
 import 'package:prime_pronta_resposta/src/constants/app_routers.dart';
 import 'package:prime_pronta_resposta/src/constants/app_text_styles.dart';
-import 'package:prime_pronta_resposta/src/view/imagePreview/image_preview_page.dart';
 
 class PhotoGalleryPage extends StatefulWidget {
   const PhotoGalleryPage({super.key});
@@ -17,7 +16,7 @@ class PhotoGalleryPage extends StatefulWidget {
 }
 
 class _PhotoGalleryPageState extends State<PhotoGalleryPage> {
-  List<File> _imageFiles = [];
+  final List<File> _imageFiles = [];
 
   Future<void> _pickAndSaveImage() async {
     final ImagePicker picker = ImagePicker();

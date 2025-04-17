@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prime_pronta_resposta/src/constants/app_colors.dart';
+import 'package:prime_pronta_resposta/src/constants/app_routers.dart';
 import 'package:prime_pronta_resposta/src/view/accepted/accepted_page.dart';
 import 'package:prime_pronta_resposta/src/view/completed/completed_page.dart';
 import 'package:prime_pronta_resposta/src/view/pending/pending_page.dart';
@@ -52,7 +53,9 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             icon: const Icon(Icons.menu, color: Colors.white),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(AppRouters.profilePage);
+            },
           ),
         ],
       ),
